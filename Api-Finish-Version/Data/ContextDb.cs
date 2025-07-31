@@ -1,4 +1,5 @@
 ﻿using Api_Finish_Version.Models.Auth;
+using Api_Finish_Version.Models.Supply;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api_Finish_Version.Data
@@ -12,6 +13,12 @@ namespace Api_Finish_Version.Data
 
         //LOGIN REGISTER
         public DbSet<User> Users { get; set; }
+
+        //SUPPLY
+        public DbSet<Supply> Supplies { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Glass> Glasses { get; set; }
+        public DbSet<Accessory> Accessories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

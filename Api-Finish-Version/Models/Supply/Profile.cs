@@ -1,0 +1,20 @@
+﻿namespace Api_Finish_Version.Models.Supply
+{
+    public class Profile : Supply
+    {
+        public decimal profileWeigth { get; set; } //Peso
+        public decimal profileHeigth { get; set; }//Largo
+        public decimal weigthMetro { get; set; } //PorMetro
+        public string profileColor { get; set; } = string.Empty; //Color
+
+        public Profile(int idSupply, string codeSupply, string nameSupply, string descriptionSupply, string nameSupplier, decimal priceSupply,
+                      decimal profileWeigth, decimal profileHeigth, decimal weigthMetro, string profileColor)
+            : base(idSupply, codeSupply, nameSupply, descriptionSupply, nameSupplier, priceSupply)
+        {
+            this.profileWeigth = profileWeigth;
+            this.profileHeigth = profileHeigth;
+            this.weigthMetro = weigthMetro;
+            this.profileColor = profileColor;
+        }
+    }
+}

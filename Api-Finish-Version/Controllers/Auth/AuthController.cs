@@ -25,7 +25,8 @@ namespace Api_Finish_Version.Controllers.Auth
                     if (!result)
                         return Unauthorized("El correo ya está registrado."); //Codigo 401
 
-                    return Ok("Usuario registrado correctamente."); //Codigo 200
+
+                return Ok("Usuario registrado correctamente."); //Codigo 200
                 }
                 catch (InvalidOperationException e)
                 {
