@@ -42,6 +42,11 @@ namespace Api_Finish_Version.Services.Supply
             var exists = await _repository.ExistSupplyByCode(codeSupply);
             if (exists) throw CreateAlreadyExistsException();
 
+            //No podemos eliminar un insumo si tiene stock registrado.
+            //bool hasStock = await _stockRepository.HasStockAsync(sku);
+            //if (hasStock)
+              //  throw new StockException($"No se puede eliminar el insumo con el SKU {sku}, porque tiene stock registrado.");
+
             var deleted = await _repository.DeleteAsync(codeSupply);
 
             return deleted; // Placeholder for actual delete logic

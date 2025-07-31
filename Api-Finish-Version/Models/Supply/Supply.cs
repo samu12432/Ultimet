@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api_Finish_Version.Models.Supply
 {
     [Table ("Supply")]
+    [Index(nameof(codeSupply), IsUnique = true)]
     public class Supply
     {
         [Key]

@@ -9,6 +9,6 @@ namespace API_REST_PROYECT.DTOs.Supply
         public string codeSupply { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Es necesario ingresar el tipo de insumo que deseas eliminar.")]
-        public TypeSupply type { get; set; };
+        public TypeSupply type { get; set; }
     }
 }

@@ -1,9 +1,16 @@
 using Api_Finish_Version.Data;
+using Api_Finish_Version.DTO.Supply;
 using Api_Finish_Version.IRepository.Auth;
+using Api_Finish_Version.IRepository.Supply;
 using Api_Finish_Version.IServices.Auth;
+using Api_Finish_Version.IServices.Supply;
+using Api_Finish_Version.Models.Supply;
 using Api_Finish_Version.Repositorys.Auth;
+using Api_Finish_Version.Repositorys.Supply;
 using Api_Finish_Version.Services.Auth;
+using Api_Finish_Version.Services.Supply;
 using Api_Finish_Version.Validation;
+using API_REST_PROYECT.DTOs.Supply;
 using API_REST_PROYECT.JWT;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -56,9 +63,16 @@ builder.Services.AddControllers(options =>
 builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IAuthRepository, AuthRespository>();
+builder.Services.AddScoped<ISupplyRepository<Supply>, SupplyRepository<Supply>>();
+builder.Services.AddScoped<IStockRepository, StockRepository>();
 
 builder.Services.AddScoped<IServiceAuth, ServiceAuth>();
 builder.Services.AddScoped<IEmailAuthService, EmailAuthService>();
+builder.Services.AddScoped(typeof(ISupplyRepository<>), typeof(SupplyRepository<>));
+builder.Services.AddScoped<ISupplyService<ProfileDto>, ProfileService>();
+builder.Services.AddScoped<ISupplyService<GlassDto>, GlassService>();
+builder.Services.AddScoped<ISupplyService<AccessoryDto>, AccessoryService>();
+builder.Services.AddScoped<IStockService, StockService>();
 
 
 builder.Services.AddSingleton<Token>();

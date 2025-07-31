@@ -20,8 +20,18 @@ namespace Api_Finish_Version.Data
         public DbSet<Glass> Glasses { get; set; }
         public DbSet<Accessory> Accessories { get; set; }
 
+        //STOCK
+        public DbSet<Stock> Stocks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Stock>()
+                .HasOne(s => s.Supply)
+                .WithMany() // Si Supply no tiene lista de stocks
+                .HasForeignKey(s => s.codeSupply)
+                .HasPrincipalKey(s => s.codeSupply); // <- Esta línea es clave
         }
     }
 }
