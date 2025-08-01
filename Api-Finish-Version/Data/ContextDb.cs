@@ -1,4 +1,5 @@
 ﻿using Api_Finish_Version.Models.Auth;
+using Api_Finish_Version.Models.Product;
 using Api_Finish_Version.Models.Supply;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,10 @@ namespace Api_Finish_Version.Data
 
         //STOCK
         public DbSet<Stock> Stocks { get; set; }
+
+        //PRODUCTOS
+        public DbSet<Product> Products { get; set; }
+        public DbSet<SupplyNecessary> SupplyNecessaries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

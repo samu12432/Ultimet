@@ -9,9 +9,9 @@ namespace Api_Finish_Version.Models.Supply
         public decimal glassWidth { get; set; }
         public GlassType glassType { get; set; }
 
-        public Glass(int idSupply, string codeSupply, string nameSupply, string descriptionSupply, string nameSupplier, decimal priceSupply,
+        public Glass(int idSupply, string codeSupply, string nameSupply, string descriptionSupply, string imageUrl, string nameSupplier, decimal priceSupply,
                      decimal glassThickness, decimal glassLength, decimal glassWidth, GlassType glassType)
-            : base(idSupply, codeSupply, nameSupply, descriptionSupply, nameSupplier, priceSupply)
+            : base(idSupply, codeSupply, nameSupply, descriptionSupply, imageUrl, nameSupplier, priceSupply)
         {
             this.glassThickness = glassThickness;
             this.glassLength = glassLength;

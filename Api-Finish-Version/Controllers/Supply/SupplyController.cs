@@ -1,5 +1,6 @@
 ﻿using Api_Finish_Version.DTO.Supply;
 using Api_Finish_Version.Exceptions.Supply;
+using Api_Finish_Version.IServices.Image;
 using Api_Finish_Version.IServices.Supply;
 using Api_Finish_Version.Models.Enums;
 using Api_Finish_Version.Services.Supply;
@@ -14,20 +15,26 @@ namespace Api_Finish_Version.Controllers.Supply
         private readonly ISupplyService<ProfileDto> _profileService;
         private readonly ISupplyService<GlassDto> _glassService;
         private readonly ISupplyService<AccessoryDto> _accessoryService;
+        private readonly IImageService _imageService;
 
-        public SupplyController(ISupplyService<ProfileDto> profileService, ISupplyService<GlassDto> glassService, ISupplyService<AccessoryDto> accessoryService)
+        public SupplyController(ISupplyService<ProfileDto> profileService, ISupplyService<GlassDto> glassService, ISupplyService<AccessoryDto> accessoryService, IImageService imageService)
         {
             _profileService = profileService;
             _glassService = glassService;
             _accessoryService = accessoryService;
+            _imageService = imageService;
         }
 
         //____________ALTA____________//
         [HttpPost("altaPerfil")]
         [Authorize]
-        public Task<IActionResult> AddProfile([FromBody] ProfileDto dto)
+        public async Task<IActionResult> AddProfile([FromBody] ProfileDto dto, IFormFile? image)
         {
-            return HandleAdd<ProfileDto, ProfileException>(dto,
+            if (image != null)
+            {
+                dto.imageUrl = await _imageService.SaveImageAsync(image, "supplies");
+            }
+            return await HandleAdd<ProfileDto, ProfileException>(dto,
                 _profileService.AddSupplyAsync,
                 "Perfil creado correctamente."
             );
@@ -35,9 +42,13 @@ namespace Api_Finish_Version.Controllers.Supply
 
         [HttpPost("altaVidrio")]
         [Authorize]
-        public Task<IActionResult> AddGlass([FromBody] GlassDto dto)
+        public async Task<IActionResult> AddGlass([FromBody] GlassDto dto, IFormFile? image)
         {
-            return HandleAdd<GlassDto, GlassException>(
+            if (image != null)
+            {
+                dto.imageUrl = await _imageService.SaveImageAsync(image, "supplies");
+            }
+            return await HandleAdd<GlassDto, GlassException>(
                 dto,
                 _glassService.AddSupplyAsync,
                 "Vidrio creado correctamente."
@@ -46,9 +57,14 @@ namespace Api_Finish_Version.Controllers.Supply
 
         [HttpPost("altaAccesorio")]
         [Authorize]
-        public Task<IActionResult> AddAccessory([FromBody] AccessoryDto dto)
+        public async Task<IActionResult> AddAccessory([FromBody] AccessoryDto dto, IFormFile? image)
         {
-            return HandleAdd<AccessoryDto, AccessoryException>(
+            if (image != null && image.Length > 0)
+                if (image != null)
+                {
+                    dto.imageUrl = await _imageService.SaveImageAsync(image, "supplies");
+                }
+            return await HandleAdd<AccessoryDto, AccessoryException>(
                 dto,
                 _accessoryService.AddSupplyAsync,
                 "Accesorio creado correctamente."

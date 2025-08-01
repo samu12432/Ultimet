@@ -7,9 +7,9 @@
         public decimal weigthMetro { get; set; } //PorMetro
         public string profileColor { get; set; } = string.Empty; //Color
 
-        public Profile(int idSupply, string codeSupply, string nameSupply, string descriptionSupply, string nameSupplier, decimal priceSupply,
+        public Profile(int idSupply, string codeSupply, string nameSupply, string descriptionSupply, string imageUrl, string nameSupplier, decimal priceSupply,
                       decimal profileWeigth, decimal profileHeigth, decimal weigthMetro, string profileColor)
-            : base(idSupply, codeSupply, nameSupply, descriptionSupply, nameSupplier, priceSupply)
+            : base(idSupply, codeSupply, nameSupply, descriptionSupply, imageUrl, nameSupplier, priceSupply)
         {
             this.profileWeigth = profileWeigth;
             this.profileHeigth = profileHeigth;

@@ -12,6 +12,8 @@ namespace Api_Finish_Version.DTO.Supply
         [StringLength(100)]
         public string descriptionSupply { get; set; } = string.Empty;
 
+        public string imageUrl { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Es necesario ingresar el nombre del proveedor.")]
         [StringLength(20)]
         public string nameSupplier { get; set; } = string.Empty;
